@@ -6,6 +6,7 @@ pipeline{
     }
     parameters {
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'main', name: 'BRANCH', type: 'PT_BRANCH'
+        choice name: 'PROJECT_DIR', choices: ['ponyracer'], description: 'Select the project directory to build'
     }
     stages{
         stage('Clean Workspace'){
@@ -21,6 +22,29 @@ pipeline{
                     echo "p: ${params.BRANCH} // ${BRANCH_NAME}"
                     echo "Using branch: ${BRANCH_NAME}"
                     git branch: "${BRANCH_NAME}", credentialsId: 'gitea-usr1', url: 'http://gitea.tsn.local/nguyents/angular-chapter8.git'
+                }
+            }
+        }
+        stage('Install Dependencies'){
+            steps{
+                dir("${params.PROJECT_DIR}") {
+                    nodejs(nodeJSInstallationName: 'node_22lts') {
+                        script{
+                            sh 'node --version'
+                            sh 'npm install'
+                        }
+                    }
+                }
+            }
+        }
+        stage('Build Project'){
+            steps{
+                dir("${params.PROJECT_DIR}") {
+                    nodejs(nodeJSInstallationName: 'node_22lts'){
+                        script{
+                            sh 'npm run build'
+                        }
+                    }
                 }
             }
         }
