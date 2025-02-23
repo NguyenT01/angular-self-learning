@@ -1,2 +1,14 @@
-<h1>Hello, {{title}}</h1>
-<p>Congratulations! Your app is running. </p>
+<h2>Ponny</h2>
+<button [disabled]="isDisable"> TOGGLE</button>
+<button (click)="onClickButton($event)"> Click me 2</button>
+<ns-races [counter2]="counter" (newRaceAvailable)="onNewRace($event)" #custom/>
+<p>new race: {{newRaceString}}</p>
+
+<hr>
+
+<input type="checkbox" #checkboxer>
+<button (click)="checkboxer.checked = !checkboxer.checked">Checkbox</button>
+
+<hr>
+
+<button (click)="custom.playing()">Play</button>
