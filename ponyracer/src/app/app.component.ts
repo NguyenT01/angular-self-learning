@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { RacesComponent } from './races/races.component';
+import { TestComponent } from '../components/test/test.component';
 
 @Component({
   selector: 'ns-root',
   imports:[
-    RacesComponent
+    RacesComponent,
+    TestComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
