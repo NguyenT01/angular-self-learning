@@ -3,3 +3,50 @@
 <button (click)="refreshRaces()">Refresh the race list</button>
 <p>{{races.length}} Races</p>
 <button (click)="addNewRace()">Add new race</button>
+
+<div>
+    @if(races.length === 0){
+        <h2>No races</h2>
+    }
+    @else if(races.length === 1){
+        <h2>One race to come</h2>
+    }
+    @else {
+        <h2>Some races to come</h2>
+    }
+</div>
+
+<div>
+    <h2>Races</h2>
+    <ul>
+        @for(race of races; track race.id){
+            <li>{{race.name}}</li>
+        } @empty {
+            <li>No races here</li>
+        }
+    </ul>
+</div>
+
+<div>
+    <h2>Race using switch statements</h2>
+    @switch(races.length){
+        @case(0){
+            <h2>No racess</h2>
+        }
+        @case (1) {
+            <h2>1 race</h2>
+        }
+        @default {
+            <h2>Some races</h2>
+        }
+    }
+</div>
+
+<hr>
+
+<div>
+    <div [ngStyle]="{fontWeight: fontWeight, color: color}">Style with ngStyle</div>
+    <div [ngClass]="{'awsome-div': isAwsome}">Style with ngClass</div>
+    <button (click)="toggleStyles()">Toggle ngStyle and ngClass</button>
+</div>
+

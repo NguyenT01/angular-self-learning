@@ -1,9 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import RaceModel from '../../models/race-model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ns-races',
-  imports: [],
+  imports: [
+    CommonModule
+  ],
   templateUrl: './races.component.html',
   styleUrl: './races.component.css',
   standalone: true
@@ -14,8 +17,12 @@ export class RacesComponent {
 
   races: Array<RaceModel> = []
 
+  fontWeight: string = 'bold';
+  color: string = 'black';
+  isAwsome: boolean = true;
+
   refreshRaces(): void{
-    this.races = [{name: 'London'}, {name: 'Paris'}];
+    this.races = [{id: 1, name: 'London'}, {id: 2, name: 'Paris'}];
   }
 
   addNewRace(){
@@ -25,5 +32,11 @@ export class RacesComponent {
 
   playing(){
     console.log('Playing...')
+  }
+
+  toggleStyles(){
+    this.fontWeight = this.fontWeight === 'normal' ? 'bold' : 'normal';
+    this.color = this.color === 'black' ? 'blue' :' black';
+    this.isAwsome = !this.isAwsome;
   }
 }
