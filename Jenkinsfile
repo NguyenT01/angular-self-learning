@@ -58,7 +58,7 @@ pipeline{
                                 ${scannerHome}/bin/sonar-scanner \
                                     -Dsonar.projectKey=angular-chapter8 \
                                     -Dsonar.host.url=http://sonar.tsn.local \
-                                    -Dsonar.login=${SONAR_TOKEN} \
+                                    -Dsonar.token=${SONAR_TOKEN} \
                                     -Dsonar.sources=. \
                                     -Dsonar.exclusions=node_modules/**,dist/** \
                                     -Dsonar.sourceEncoding=UTF-8
