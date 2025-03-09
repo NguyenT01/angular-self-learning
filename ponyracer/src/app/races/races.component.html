@@ -97,3 +97,18 @@
     <li>{{sampleDate | date:'longDate'}}</li>
     <li>{{sampleDate | date:'shortTime'}}</li>
 </ul>
+
+<hr>
+<p>Promise</p>
+<div>{{asyncGretting | async }}</div>
+@if(asyncUser | async; as user){
+    <div>{{user.name}}</div>
+}
+
+<hr>    
+<p>Pipe in TS Code</p>
+<p>{{formattedSpeed}}</p>
+
+<hr>
+<p>Custom Pipe with FromNowPipe with date-fns parse time lib</p>
+<p>The race started: {{ race.startInstant | fromNow:'year' }}</p>

@@ -1,12 +1,15 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, LOCALE_ID, Output } from '@angular/core';
 import RaceModel from '../../models/race-model';
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatNumber } from '@angular/common';
 import { PonyModel } from '../../models/pony-model';
+import { UserModel } from '../../models/user-model';
+import { FromNowPipe } from '../pipes/from-now-pipe';
 
 @Component({
   selector: 'ns-races',
   imports: [
-    CommonModule
+    CommonModule,
+    FromNowPipe
   ],
   templateUrl: './races.component.html',
   styleUrl: './races.component.css',
@@ -20,12 +23,31 @@ export class RacesComponent {
 
   ponies =  new Map<number, PonyModel>();
 
+  asyncGretting = new Promise<string>(resolve =>{
+    window.setTimeout(() => resolve('Hello'), 3000)
+  })
+
+  asyncUser = new Promise<UserModel>(resolve =>{
+    window.setTimeout(() => resolve({name: 'Cédric'}), 3000)
+  })
+
   // 30th January 2025, 14:30:00
   sampleDate: Date = new Date(2025,0,30, 14,30,0);
 
   fontWeight: string = 'bold';
   color: string = 'black';
   isAwsome: boolean = true;
+
+  formattedSpeed: string;
+
+  constructor(@Inject(LOCALE_ID) locale: string){
+    this.formattedSpeed = formatNumber(123.1, locale, '.2')
+  }
+
+  race = {
+    startInstant: '2023-02-10T10:00:00.000Z'
+  }
+
 
   refreshRaces(): void{
     this.races = [{id: 1, name: 'London'}, {id: 4, name: 'Paris'}, {id: 3 , name: 'Tokyo'}, {id: 2, name: 'Shanghai'}]; ;
