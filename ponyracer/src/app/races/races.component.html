@@ -50,3 +50,65 @@
     <button (click)="toggleStyles()">Toggle ngStyle and ngClass</button>
 </div>
 
+<p> PIPES </p>
+<p>{{races | json}}</p>
+
+<hr>
+
+<ul>
+    @for(pony of ponies | keyvalue; track pony){
+        <li>{{pony.key}} - {{pony.value.name}}</li>
+    }
+</ul>
+
+<hr>
+
+<p>{{'Hello world' | uppercase}} </p>
+<p>{{'Hello world' | lowercase}} </p>
+<p>{{'hello world' | titlecase}} </p>
+
+<hr>
+<p>Number</p>
+<ul>
+    <li>{{12345}}</li>
+    <li>{{12345 | number}}</li>
+    <li>{{123456 | number:'6.'}}</li>
+    <li>{{12345 | number:'.2'}}</li>
+    <li>{{12345.13 | number:'.1-1'}}</li>
+    <li>{{12345.16 | number:'.1-1'}}</li>
+    <li>{{0.84 | percent:'.3'}}</li>
+    <li>{{0.8 | percent}}</li>
+</ul>
+
+<hr>
+<p>Currency</p>
+<ul>
+    <li>{{10.6 | currency:'USD'}}</li>
+    <li>{{10.6 | currency:'USD':'symbol'}}</li>
+    <li>{{10.6 | currency:'USD':'symbol-narrow'}}</li>
+    <li>{{10.6 | currency:'USD':'code':'.3'}}</li>
+</ul>
+
+<p>Date</p>
+<ul>
+    <li>{{'2025-01-21T14:20:13' | date:'dd/MM/yyy HH:mm:ss'}}</li>
+    <li>{{'2025-01-21T14:20:13Z' | date:'dd/MM/yyy HH:mm:ss'}}</li>
+    <li>{{sampleDate | date:'dd/MM/yyy HH:mm:ss'}} </li>
+    <li>{{sampleDate | date:'longDate'}}</li>
+    <li>{{sampleDate | date:'shortTime'}}</li>
+</ul>
+
+<hr>
+<p>Promise</p>
+<div>{{asyncGretting | async }}</div>
+@if(asyncUser | async; as user){
+    <div>{{user.name}}</div>
+}
+
+<hr>    
+<p>Pipe in TS Code</p>
+<p>{{formattedSpeed}}</p>
+
+<hr>
+<p>Custom Pipe with FromNowPipe with date-fns parse time lib</p>
+<p>The race started: {{ race.startInstant | fromNow:'year' }}</p>
