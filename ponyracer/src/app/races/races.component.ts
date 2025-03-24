@@ -4,6 +4,10 @@ import { CommonModule, formatNumber } from '@angular/common';
 import { PonyModel } from '../../models/pony-model';
 import { UserModel } from '../../models/user-model';
 import { FromNowPipe } from '../pipes/from-now-pipe';
+import { RaceService } from '../services/race-service';
+import { ArticleService } from '../services/article-service';
+import { HttpResponse } from '@angular/common/http';
+import { ArticleModel } from '../../models/article-model';
 
 @Component({
   selector: 'ns-races',
@@ -19,7 +23,8 @@ export class RacesComponent {
   @Input() counter2: number = 0;
   @Output() newRaceAvailable: EventEmitter<string> = new EventEmitter<string>();
 
-  races: Array<RaceModel> = []
+  races: Array<RaceModel> = [];
+
 
   ponies =  new Map<number, PonyModel>();
 
@@ -40,8 +45,48 @@ export class RacesComponent {
 
   formattedSpeed: string;
 
-  constructor(@Inject(LOCALE_ID) locale: string){
-    this.formattedSpeed = formatNumber(123.1, locale, '.2')
+  httpRaces : Array<RaceModel> = [];
+
+  constructor(@Inject(LOCALE_ID) locale: string, private readonly raceService: RaceService,
+private readonly articleService: ArticleService){
+    this.formattedSpeed = formatNumber(123.1, locale, '.2');
+    this.getHttpRaces();
+    this.createArticle();
+    this.getArticleWithAllHttpResponses();
+    this.getArticleWithParams();
+  }
+
+  getArticleWithParams(){
+    const postId = 1;
+    this.articleService.getArticleCommentsWithParams(postId).subscribe(articles =>{
+      console.log('Articles: ', articles)
+    })
+  }
+  
+  getHttpRaces(){
+    this.raceService.getListByHttpClient().subscribe(races => {
+      this.httpRaces = races;
+    })
+  }
+  createArticle(){
+    const newArticle = {
+      title: 'My article',
+      body: 'This is my article',
+      userId: 1
+    };
+
+    this.articleService.createArticle(newArticle).subscribe(article =>{
+      console.log('Article created', article)
+    })
+
+  }
+
+  getArticleWithAllHttpResponses(){
+    this.articleService.getArticleWithAllHttpResponses().subscribe((response: HttpResponse<ArticleModel>) =>{
+      console.log(response);
+      console.log(response.status);
+      console.log(response.headers.keys());
+    })
   }
 
   race = {

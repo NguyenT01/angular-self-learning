@@ -112,3 +112,11 @@
 <hr>
 <p>Custom Pipe with FromNowPipe with date-fns parse time lib</p>
 <p>The race started: {{ race.startInstant | fromNow:'year' }}</p>
+
+<hr>
+<h3>Http Races</h3>
+<ul>
+    @for(race of httpRaces; track race.id){
+        <li>{{ race.name }}</li>
+    }
+</ul>
