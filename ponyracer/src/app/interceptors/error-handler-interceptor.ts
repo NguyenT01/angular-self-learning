@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpReq
 import { inject } from "@angular/core";
 import { Observable } from "rxjs/internal/Observable";
 import { Router } from '@angular/router';
-import { ErrorHandler } from "../handlers/error-handler";
+import { ErrorHandler, SHOULD_NOT_HANDLE_ERROR } from "../handlers/error-handler";
 import { tap } from "rxjs";
 
 export const errorHandlerInterceptor: HttpInterceptorFn = (
@@ -11,6 +11,10 @@ export const errorHandlerInterceptor: HttpInterceptorFn = (
 ) : Observable<HttpEvent<unknown>> =>{
     const router = inject(Router);
     const errorHandler = inject(ErrorHandler);
+
+    if(req.context.get(SHOULD_NOT_HANDLE_ERROR)){
+        return next(req);
+    }
 
     return next(req).pipe(
         tap({

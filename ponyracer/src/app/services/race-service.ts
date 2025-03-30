@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import RaceModel from "../../models/race-model";
 import { LoggingApiService } from "./logging-api-service";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpContext } from "@angular/common/http";
 import { Observable, retry } from "rxjs";
+import { SHOULD_NOT_HANDLE_ERROR } from "../handlers/error-handler";
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +17,11 @@ export class RaceService{
     }
     
     getListByHttpClient(): Observable<Array<RaceModel>>{
-        return this.http.get<Array<RaceModel>>(`${this.baseUrl}/971dbfe4-ef19-4b2b-bac1-ec0c5d637a62`).pipe(
+        const context = new HttpContext().set(SHOULD_NOT_HANDLE_ERROR, true);
+
+        return this.http.get<Array<RaceModel>>(`${this.baseUrl}/971dbfe4-ef19-4b2b-bac1-ec0c5d637a62`, {
+            context
+        }).pipe(
             retry(3)
         )
     }
@@ -26,7 +31,5 @@ export class RaceService{
         this.loggingService.log('race-service: get races')
         return [];
     }
-
-
 
 }

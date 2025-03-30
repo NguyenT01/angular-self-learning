@@ -1,6 +1,7 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpContext } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ArticleModel } from "../../models/article-model";
+import { SHOULD_NOT_HANDLE_ERROR } from "../handlers/error-handler";
 
 @Injectable({ providedIn: 'root' })
 export class ArticleService{
@@ -20,13 +21,16 @@ export class ArticleService{
     }
 
     getArticleCommentsWithParams(postId: number){
+        const context = new HttpContext().set(SHOULD_NOT_HANDLE_ERROR, true);
+
         return this.http.get<ArticleModel[]>(`${this.baseUrl}/comments`, {
             params: {
                 postId
             },
             headers: {
                 Authorization: `Bearer ${this.token}`
-            }
+            },
+            context
         });
     }
 
