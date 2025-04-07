@@ -9,3 +9,25 @@
     <button (click)="updateValueInSignal()">Update Value In Signal</button>
 </div>
 <p>Current value: {{rainbowDash() | json}}</p>
+<p>Current color: {{rainbowDash().color}}</p>
+
+<hr>
+
+<app-races></app-races>
+
+<hr>
+
+<app-pony [tailLength]="ponyTailLenghtInInch()" [material]="ponytailMaterial()"
+[ponyModel]="ponyModelParent()" (ponySelected)="betOnPony($event)"></app-pony>
+
+<hr>
+
+<p>selected pony from child to parent: {{selectedPonyParent()?.name}}</p>
+
+<div>
+    <button (click)="setNewPonyParent()">Set new pony parent</button>
+</div>
+
+<hr>
+
+<app-score></app-score>

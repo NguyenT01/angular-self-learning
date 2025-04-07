@@ -1,0 +1,13 @@
+<p>Races</p>
+<button (click)="refreshRace()">Refresh races</button>
+<p>Total races: {{races().length}}</p>
+@if(races().length; as raceCount){
+    <p>Race list:</p>
+    <ul>
+        @for(race of races(); track race.id){
+            <li>{{race.name}}</li>
+        } @empty {
+            <li>No races</li>
+        }
+    </ul>
+}
