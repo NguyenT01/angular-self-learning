@@ -1,1 +1,11 @@
 <h1>Angular19</h1>
+<div>
+    <button (click)="getSignal()">Read Signal</button>
+</div>
+<div>
+    <button (click)="setNewValueInSignal()">Change signal</button>
+</div>
+<div>
+    <button (click)="updateValueInSignal()">Update Value In Signal</button>
+</div>
+<p>Current value: {{rainbowDash() | json}}</p>
