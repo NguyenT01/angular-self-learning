@@ -1,0 +1,14 @@
+<p>Pony Component</p>
+<p>{{ponyModel()?.name }} AND id = {{ponyModel()?.id}}</p>
+<div>
+    <button (click)="backToBirthCertificate()">Certificate</button>
+</div>
+<div>
+    <button (click)="backToTrackRecord()">TrackRecord</button>
+</div>
+<div>
+    <button (click)="backToReviews()">Reviews</button>
+</div>
+<div>
+    <router-outlet/>
+</div>
