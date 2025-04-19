@@ -39,6 +39,7 @@ export class AppComponent {
   backToRace(){
     this.router.navigate(['/races',44]);
   }
+
   backToNewRace(){
     this.router.navigate(['/races/new'])
   }
