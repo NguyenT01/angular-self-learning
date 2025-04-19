@@ -1,0 +1,30 @@
+<header>
+    <nav>App Header</nav>
+</header>
+<main>
+    <hr>
+    <div>
+        <button (click)="saveAndMoveBackToHome()">Click to Home</button>
+        <button (click)="backToPony()">Back to Pony</button>
+        <button (click)="backToPony2()">Back to Pony 2</button>
+    </div>
+    <div>
+        <button (click)="backToRace()">Back to Race</button>
+        <button (click)="backToNewRace()">Back to New Race</button>
+        <button (click)="backToPony3()">Pony 3</button>
+    </div>
+    <div>
+        <a [routerLink]="['/']">Home</a>
+    </div>
+    <div>
+        <a [routerLink]="['/races',raceModel()?.id, 'ponies', ponyModel()?.id]">See Pony</a>
+    </div>
+
+    <hr>
+    <router-outlet/>
+
+    <hr>
+</main>
+<footer>
+    Made with love by Ninja Squad
+</footer>

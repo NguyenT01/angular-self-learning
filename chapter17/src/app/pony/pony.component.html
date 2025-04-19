@@ -1,0 +1,21 @@
+<p>Pony Component</p>
+<p>{{ponyModel()?.name }} AND id = {{ponyModel()?.id}}</p>
+<div>
+    <button (click)="backToBirthCertificate()">Certificate</button>
+</div>
+<div>
+    <button (click)="backToTrackRecord()">TrackRecord</button>
+</div>
+<div>
+    <button (click)="backToReviews()">Reviews</button>
+</div>
+
+
+<p>Height value: {{queryParamHeight}}</p>
+<p>Width value: {{queryParamWidth()}}</p>
+<p>Km Run: {{staticDataKm}}</p>
+<p>Racename: {{raceName()}}</p>
+
+<div>
+    <router-outlet/>
+</div>
