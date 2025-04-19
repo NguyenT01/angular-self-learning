@@ -7,7 +7,7 @@ import PonyModel from '../models/pony-model';
   selector: 'app-root',
   imports: [RouterOutlet, RouterLink],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   private readonly router = inject(Router);
@@ -16,35 +16,44 @@ export class AppComponent {
 
   raceModel: Signal<RaceModel | undefined> = signal({
     id: 10,
-    name: 'Cairo Map'
+    name: 'Cairo Map',
   } as RaceModel);
 
   ponyModel: Signal<PonyModel | undefined> = signal({
     id: 999,
-    name: 'Blue Pony'
+    name: 'Blue Pony',
   } as PonyModel);
 
-  saveAndMoveBackToHome(){
+  saveAndMoveBackToHome() {
     this.router.navigate(['']);
   }
 
-  backToPony(){
-    this.router.navigate(['/races',this.raceModel()?.id, 'ponies', this.ponyModel()?.id]);
+  backToPony() {
+    this.router.navigate(
+      ['/races', this.raceModel()?.id, 'ponies', this.ponyModel()?.id],
+      {
+        queryParams: {
+          height: 400,
+          width: 200,
+          raceName: 'New york',
+        },
+      }
+    );
   }
 
-  backToPony2(){
-    this.router.navigate(['/races',22, 'ponies', 333]);
+  backToPony2() {
+    this.router.navigate(['/races', 22, 'ponies', 333]);
   }
 
-  backToRace(){
-    this.router.navigate(['/races',44]);
+  backToRace() {
+    this.router.navigate(['/races', 44]);
   }
 
-  backToNewRace(){
-    this.router.navigate(['/races/new'])
+  backToNewRace() {
+    this.router.navigate(['/races/new']);
   }
 
-  backToPony3(){
+  backToPony3() {
     this.router.navigate(['/ponies', 333]);
   }
 }

@@ -11,6 +11,6 @@ export class RaceService{
         return of({
             id,
             name: 'Blue Pony Race'
-        } as RaceModel);
+        } as RaceModel).pipe(delay(3000));
     }
 }
