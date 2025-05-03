@@ -1,0 +1,12 @@
+<h2>Sign up reactive form</h2>
+<form (ngSubmit)="register()" [formGroup]="userForm">
+    <div>
+        <label for="username">Username</label>
+        <input id="username" formControlName="username">
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" formControlName="password">
+    </div>
+    <button type="submit">Register</button>
+</form>
