@@ -10,12 +10,15 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 export class RegisterReactiveComponent {
   private readonly fb = inject(FormBuilder);
 
+  readonly usernameCtrl = this.fb.control('', [
+    Validators.required,
+    Validators.minLength(3),
+  ]);
+  readonly passwordCtrl = this.fb.control('', Validators.required);
+
   readonly userForm = this.fb.group({
-    username: this.fb.control('', [
-      Validators.required,
-      Validators.minLength(3),
-    ]),
-    password: this.fb.control('', Validators.required),
+    username: this.usernameCtrl,
+    password: this.passwordCtrl,
   });
 
   register(): void {

@@ -3,10 +3,19 @@
     <div>
         <label for="username">Username</label>
         <input id="username" formControlName="username">
+        @if(usernameCtrl.dirty && usernameCtrl.hasError('required')){
+            <div>Username is required</div>
+        }
+        @if(usernameCtrl.dirty && usernameCtrl.hasError('minlength')){
+            <div>Username should be 3 characters min</div>
+        }
     </div>
     <div>
         <label for="password">Password</label>
         <input type="password" id="password" formControlName="password">
+        @if(passwordCtrl.dirty && passwordCtrl.hasError('required')){
+            <div>Password is required</div>
+        }
     </div>
-    <button type="submit">Register</button>
+    <button type="submit" [disabled]="userForm.invalid">Register</button>
 </form>
