@@ -9,12 +9,31 @@
         @if(usernameCtrl.dirty && usernameCtrl.hasError('minlength')){
             <div>Username should be 3 characters min</div>
         }
+        @if(usernameCtrl.dirty && usernameCtrl.hasError('alreadyUsed')){
+            <div>Username already used</div>
+        }
     </div>
     <div>
         <label for="password">Password</label>
         <input type="password" id="password" formControlName="password">
         @if(passwordCtrl.dirty && passwordCtrl.hasError('required')){
             <div>Password is required</div>
+        }
+        @if(passwordCtrl.dirty && passwordCtrl.hasError('notMinimumNumberDigitInString')){
+            <div>Password must have 
+                {{passwordCtrl.errors?.['notMinimumNumberDigitInString'].minLength}} number digit</div>
+        }
+    </div>
+    <div>
+        <label for="birthdate">Birth Date</label>
+        <input type="date" formControlName="birthDate" id="birthdate">
+        @if(birthDateCtrl.dirty){
+            @if(birthDateCtrl.hasError('required')){
+                <div>Birth date is required</div>
+            }
+            @else if(birthDateCtrl.hasError('tooYoung')){
+                <div>You're way too young to be betting on pony racer</div>
+            }
         }
     </div>
     <button type="submit" [disabled]="userForm.invalid">Register</button>
