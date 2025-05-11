@@ -3,31 +3,44 @@
     <div>
         <label for="username">Username</label>
         <input id="username" formControlName="username">
-        @if(usernameCtrl.dirty && usernameCtrl.hasError('required')){
-            <div>Username is required</div>
-        }
-        @if(usernameCtrl.dirty && usernameCtrl.hasError('minlength')){
-            <div>Username should be 3 characters min</div>
-        }
-        @if(usernameCtrl.dirty && usernameCtrl.hasError('alreadyUsed')){
+        <val-errors controlName="username">
+            <ng-template valError="required">Username is required</ng-template>
+            <ng-template valError="minlength">Username should be 3 chars min</ng-template>
+        </val-errors>
+
+        @if(usernameCtrl.touched && usernameCtrl.hasError('alreadyUsed')){
             <div>Username already used</div>
         }
+
     </div>
-    <div>
-        <label for="password">Password</label>
-        <input type="password" id="password" formControlName="password">
-        @if(passwordCtrl.dirty && passwordCtrl.hasError('required')){
-            <div>Password is required</div>
-        }
-        @if(passwordCtrl.dirty && passwordCtrl.hasError('notMinimumNumberDigitInString')){
-            <div>Password must have 
-                {{passwordCtrl.errors?.['notMinimumNumberDigitInString'].minLength}} number digit</div>
+    <div formGroupName="passwordForm">
+        <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" formControlName="password">
+            <div style="color: red">Strength: {{passwordStrength()}}</div>
+            @if(passwordCtrl.touched && passwordCtrl.hasError('required')){
+                <div>Password is required</div>
+            }
+            @if(passwordCtrl.touched && passwordCtrl.hasError('notMinimumNumberDigitInString')){
+                <div>Password must have 
+                    {{passwordCtrl.errors?.['notMinimumNumberDigitInString'].minLength}} number digit</div>
+            }
+        </div>
+        <div>
+            <label for="confirm">Confirm Password</label>
+            <input type="password" id="confirm" formControlName="confirm">
+            @if(confirmCtrl.touched && confirmCtrl.hasError('required')){
+                <div>Confirm password is required</div>
+            }
+        </div>
+        @if(passwordGroup.touched && passwordGroup.hasError('matchingError')){
+            <div>Passwords do not match</div>
         }
     </div>
     <div>
         <label for="birthdate">Birth Date</label>
         <input type="date" formControlName="birthDate" id="birthdate">
-        @if(birthDateCtrl.dirty){
+        @if(birthDateCtrl.touched){
             @if(birthDateCtrl.hasError('required')){
                 <div>Birth date is required</div>
             }

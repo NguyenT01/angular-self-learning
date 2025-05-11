@@ -1,10 +1,6 @@
-import { inject } from '@angular/core';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { UserService } from '../services/user-service';
 
 export class CustomValidator {
-  readonly userService = inject(UserService);
-
   static isOldEnough(
     control: AbstractControl<Date | null>
   ): ValidationErrors | null {
@@ -29,5 +25,12 @@ export class CustomValidator {
         ? null
         : { notMinimumNumberDigitInString: { minLength: numberOfDigits } };
     };
+  }
+
+  static passwordMatch(group: AbstractControl): ValidationErrors | null {
+    const password = group.value.password;
+    const confirm = group.value.confirm;
+    console.log(group.value);
+    return password === confirm ? null : { matchingError: true };
   }
 }
