@@ -1,0 +1,11 @@
+@let v = value();
+@for(pickableValue of pickableValues; track pickableValue){
+    <button
+        [class.selected]="v != null && pickableValue <= v"
+        type="button"
+        (click)="setValueAndPropagateChanges(pickableValue)"
+        [disabled]="disabled()"
+        (blur)="onTouched()">
+        {{ pickableValue }}
+    </button>
+}
