@@ -1,0 +1,38 @@
+<h2>Edit Blog Post</h2>
+<form [formGroup]="blogPostForm">
+    <div>
+        <label for="title">Title</label>
+        <input type="text" formControlName="title" id="title" />
+    </div>
+    <div>
+        <label for="content">Content</label>
+        <textarea formControlName="content" id="content"></textarea>
+    </div>
+    <!-- FORM ARRAY WITH FORM CONTROL-->
+    <div formArrayName="tags">
+        <p>Tags</p>
+        <button id="add-tag" (click)="addTag()">Add Tag</button>
+        @for(tagControl of tagsArray.controls; track tagControl){
+            <div>
+                <input type="text" class="tag" [formControlName]="$index">
+                <button class="remove-tag" (click)="removeTag($index)">Remove tag</button>
+            </div>
+        }
+    </div>
+    <!-- FORM ARRAY WITH FORM GROUP-->
+    <div formArrayName="invoices">
+        <p>Invoice Lines</p>
+        <button (click)="addInvoice()">Add Invoice</button>
+        @for(invoice of invoiceLines.controls; track invoice){
+            <div [formGroupName]="$index">
+                <input type="text" formControlName="label">
+                <input type="number" formControlName="quantity">
+                <input type="number" formControlName="price">
+                <button (click)="removeInvoice($index)">Remove invoice</button>
+            </div>
+            <hr>
+        }
+    </div>
+
+    <button type="submit" [disabled]="blogPostForm.invalid" (click)="submit()">Save</button>
+</form>

@@ -1,0 +1,32 @@
+<h2>Sign up</h2>
+<form (ngSubmit)="register()" #userForm="ngForm" [ngFormOptions]="{ updateOn: 'blur'}">
+    <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" [(ngModel)]="user.username" [ngModelOptions]="{ updateOn: 'blur'}" required minlength="3" #username="ngModel">
+        <small>{{user.username}} is an awesome username</small>
+        @if(username.touched && username.hasError('required')) {
+            <div>username is required</div>
+        }
+        @if(username.touched && username.hasError('minlength')) {
+            <div>username must be at least 3 characters long</div>
+        }
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" [(ngModel)]="user.password" required #password="ngModel">
+        @if(password.touched && password.hasError('required')) {
+            <div>password is required</div>
+        }
+    </div>
+    <div>
+        <label for="birthdate">BirthDate</label>
+        <input type="date" id="birthDate" name="birthdate" ngModel #birthdate="ngModel" required appOldEnough>
+        @if(birthdate.touched && birthdate.hasError('required')) {
+            <div>Birth date is required</div>
+        }
+        @if(birthdate.touched && birthdate.hasError('tooYoung')) {
+            <div>You're way too young to be betting on pony racer</div>
+        }
+    </div>
+    <button type="submit" [disabled]="userForm.invalid">Register</button>
+</form>

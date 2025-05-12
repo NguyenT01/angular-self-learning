@@ -1,0 +1,7 @@
+<form [formGroup]="movieForm" (ngSubmit)="save()">
+    <div>
+        <label for="rating">Rating</label>
+        <ns-rating id="rating" formControlName="rating"></ns-rating>
+    </div>
+    <button type="submit">Save</button>
+</form>

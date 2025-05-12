@@ -1,0 +1,17 @@
+<h2>UserForm Nullability</h2>
+<form [formGroup]="userForm">
+    <div>
+        <label for="username">Username</label>
+        <input type="text" id="username" formControlName="username" />
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" formControlName="password" />
+    </div>
+    <div>
+        <button (click)="enable('username')">Enable username</button>
+        <button (click)="disable('username')">Disable Username</button>
+        <button (click)="reset()">Reset</button>
+        <button type="submit" (click)="submit()">Submit</button>
+    </div>
+</form>
