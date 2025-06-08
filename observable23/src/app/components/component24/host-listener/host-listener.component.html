@@ -1,0 +1,12 @@
+<input type="text" nsClear>
+<input type="text" nsClearTraditional>
+<hr>
+<p nsWindowResize>aaa</p>
+<hr>
+<!--Code-driven form -->
+<form [formGroup]="form">
+    <input type="text" formControlName="name" nsAddClassIfRequired>
+</form>
+
+<!--Template driven form-->
+<input type="text" [(ngModel)]="user.name" required nsAddClassIfRequired>

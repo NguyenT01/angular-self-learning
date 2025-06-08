@@ -1,0 +1,20 @@
+.nice{
+    color: red
+}
+
+.is-required{
+    border: 2px solid red;
+    position: relative;
+}
+
+.is-required::after{
+    content: '*';
+    color: red;
+    position: absolute;
+    right: 5px;
+}
+
+.is-pristige{
+    border: 2px solid blue;
+    position: relative;
+}

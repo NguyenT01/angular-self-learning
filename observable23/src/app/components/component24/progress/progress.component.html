@@ -1,0 +1,19 @@
+<div class="progress">
+    <div
+        class="progress-bar"
+        [style.width.%]="percentage()"
+        [attr.aria-valuenow]="value()"
+        [attr.aria-valuemin]="min()"
+        [attr.aria-valuemax]="max()"
+      >
+      @if(formatter(); as f){
+        <span>
+            <ng-container *ngTemplateOutlet="f; context: formatterContext()" />
+        </span>
+      }
+      @else {
+        {{percentage()}} %
+      }
+
+    </div>
+</div>
