@@ -1,0 +1,26 @@
+<div>
+    <p>Pony search</p>
+    <input [formControl]="input">
+    <ul>
+        @for(pony of ponies(); track pony.id) {
+            <li>{{ pony.name }}</li>
+        }
+    </ul>
+</div>
+
+<div>
+    <p>Trigger List</p>
+    <ul>    
+        @for(race of races(); track race.id){
+            <li>{{race.name}}</li>
+        }
+    </ul>
+    <button (click)="refreshList()">Refresh List</button>
+</div>
+<div>
+    <button (click)="switchToHome()">Switch to Home</button>
+</div>
+<div>
+    <p>Counter state: {{counterState()}}</p>
+    <button (click)="counterUp()">Counter Up</button>
+</div>

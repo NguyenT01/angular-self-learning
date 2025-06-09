@@ -1,0 +1,15 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">
+            <ng-content select="[title]"></ng-content>
+        </h4>
+        <p class="card-text">
+            <ng-content select="[content]"></ng-content>
+        </p>
+        <p class="footer">
+            <ng-content select="[footer]">
+                Footer Default <strong>here</strong>
+            </ng-content>
+        </p>
+    </div>
+</div>

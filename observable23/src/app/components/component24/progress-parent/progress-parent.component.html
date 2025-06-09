@@ -1,0 +1,14 @@
+<app-progress [value]="75"></app-progress>
+<div>
+    <ng-template #myFormatter let-p="percentage">
+        <strong>Your</strong> progress: {{p | number:'1.0-2'}}%
+    </ng-template>
+    <app-progress [value]="75" [formatter]="myFormatter"></app-progress>
+</div>
+
+<div>
+    <ng-template #myFormatter let-p>
+        <strong>Your</strong> progress: {{p | number:'1.0-2'}}%
+    </ng-template>
+    <app-progress [value]="75" [formatter]="myFormatter"></app-progress>
+</div>
