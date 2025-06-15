@@ -1,0 +1,28 @@
+<hr>
+<button (click)="toggleLanguage()">Toggle button</button>
+<span> {{ 'hello' | transloco }} </span>
+<select name="food" id="food">
+    @for(f of selection; track f.id){
+        <option value="f.name">{{`selections.${f.name}` | transloco}}</option>
+    }
+</select>
+<p>{{ 'selections.celery' | transloco}}</p>
+<ng-container *transloco="let t">
+    <p>{{ t('selections.celery')}}</p>
+    <p>{{ t('selections.egg')}}</p>
+</ng-container>
+<hr>
+<select name="ing" id="ing" [(ngModel)]="ingredientSelected" (change)="updateFood()">
+    @for(i of selection; track i.id){
+        <option value="{{i.name}}">{{`selections.${i.name}` | transloco}}</option>
+    }
+</select>
+@if(selectedFood){
+    <div>
+        <p>{{selectedFood.name}}</p>
+        <p>{{selectedFood.id}}</p>
+    </div>
+}
+
+<p>{{'dashboard.unread' | transloco:{ count: total()} }}</p>
+<p>{{message()}}</p>

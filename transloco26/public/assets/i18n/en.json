@@ -1,0 +1,22 @@
+{
+    "hello": "Hello world!",
+    "dashboard": {
+        "title": "Dashboard",
+        "description": "This is your dashboard",
+        "unread": "You have {{count}} unread messages"
+    },
+    "selections":{
+        "fish": "Fish 1",
+        "egg": "Egg 1",
+        "celery" :"Celery 1"
+    },
+    "errors":{
+        "required": "Field is required",
+        "minLengthN": "Field should be at least {{n}} characters long",
+        "maxLegnthN": "Field should be at most {{n}} characters long",
+        "minN": "Field should be at least {{n}}",
+        "maxN": "Field should be at most {{n}}",
+        "pattern": "Field is invalid",
+        "unknown": "Unknown error"
+    }
+}
