@@ -14,6 +14,7 @@ export class Race {
     { id: 2, color: 'orange' },
   ]);
   protected readonly colors: Array<string> = ['green', 'orange', 'blue'];
+  randomcolor2: string = '';
 
   protected check(): void {
     console.log('race component view checked');
@@ -24,6 +25,8 @@ export class Race {
     const pony = ponies[0];
     ponies[0] = { ...pony, color: this.randomColor() };
     this.ponies.set([...ponies]);
+
+    this.randomcolor2 = this.randomColor();
   }
 
   protected randomColor(): string {
