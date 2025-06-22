@@ -1,0 +1,13 @@
+<p>form</p>
+<div>
+    <form [formGroup]="fg">
+        <input type="text" name="name" id="name" formControlName="name">
+        <app-error-component [formCtrl]="nameCtrl"></app-error-component>
+        <input type="number" name="age" id="age" formControlName="age">
+        <app-error-component></app-error-component>
+        <app-error-component [formCtrl]="ageCtrl"></app-error-component>
+    </form>
+    <div>
+        <button (click)="submit()">Submit</button>
+    </div>
+</div>

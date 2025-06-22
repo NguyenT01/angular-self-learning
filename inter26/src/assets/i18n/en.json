@@ -1,0 +1,11 @@
+{
+    "home": "Welcome to Ponyracer",
+    "welcome-message": "Enjoy the races!",
+    "title": "Title 1",
+    "title2": "Title 2",
+    "morning": "Good morning, {{name}}" ,
+    "dashboard": {
+        "title": "Dashboard title",
+        "desc": "Dashboard description"
+    }
+}

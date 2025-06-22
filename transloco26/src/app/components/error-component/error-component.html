@@ -1,0 +1,7 @@
+@if(errorMessage()){
+    <ul>
+    @for(err of errorMessage(); track err.code){
+        <li>{{ `errors.${err.code}` | transloco : (err.params ?? {}) }}</li>
+    }
+    </ul>
+}

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template" target-language="vi">
+    <body>
+      <trans-unit id="home.fullTitle" datatype="html">
+        <source>Welcome to Ponyracer</source>
+        <target>Chào mừng đến với Ponyracer</target>
+        <note priority="1" from="description"> the title of the home page</note>
+        <note priority="1" from="meaning">welcome title </note>
+      </trans-unit>
+      <trans-unit id="home.welcome" datatype="html">
+        <source>Welcome to PONYRACER <x id="INTERPOLATION" equiv-text="{{user.firstname}}"/> <x id="INTERPOLATION_1" equiv-text="{{user.lastname}}"/></source>
+        <target>Chào mừng đến với PONYRACER <x id="INTERPOLATION" equiv-text="{{user.firstname}}"/> <x id="INTERPOLATION_1" equiv-text="{{user.lastname}}"/></target>
+      </trans-unit>
+      <trans-unit id="home.ponyImage.alt" datatype="html">
+        <source>running pony</source>
+        <target>ngựa đang chạy</target>
+      </trans-unit>
+      <trans-unit id="home.ponyImage.title" datatype="html">
+        <source>Pony are cool, aren&apos;t they?</source>
+        <target>Ngựa Pony thật tuyệt, phải không?</target>
+      </trans-unit>
+      <trans-unit id="home.startMessage" datatype="html">
+        <source> Let&apos;s start playing
+</source>
+        <target>Hãy bắt đầu chơi nào</target>
+      </trans-unit>
+      <trans-unit id="6993827833437178306" datatype="html">
+        <source>PENDING</source>
+        <target>ĐANG CHỜ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ns-welcome/ns-welcome.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8111277758583679220" datatype="html">
+        <source>IN PROGRESS</source>
+        <target>ĐANG TIẾN HÀNH</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ns-welcome/ns-welcome.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2312076048705890765" datatype="html">
+        <source>DONE</source>
+        <target>HOÀN TẤT</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ns-welcome/ns-welcome.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="goodNight.hello" datatype="html">
+        <source>Good night, <x id="PH" equiv-text="this.user.firstname"/></source>
+        <target>Chúc ngủ ngon, <x id="PH" equiv-text="this.user.firstname"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ns-welcome/ns-welcome.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

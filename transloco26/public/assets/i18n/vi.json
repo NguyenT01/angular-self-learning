@@ -1,0 +1,23 @@
+{
+    "hello": "Xin chào",
+    "helloUser": "Xin chào {{name}}",
+    "dashboard":{
+        "title" : "Bảng điều khiển",
+        "description": "Đây là bảng điều khiển của bạn",
+        "unread": "Bạn có {{count}} tin nhắn chưa đọc"
+    },
+    "selections":{
+        "fish": "Thịt cá 1",
+        "egg": "Trứng 1",
+        "celery" :"Cần tây 1"
+    },
+    "errors":{
+        "required": "Truong nay la bat buoc",
+        "minLengthN": "Truong nay phai co do dai toi thieu la {{n}}",
+        "maxLegnthN": "Truong nay phai co do dai toi da la {{n}}",
+        "minN": "Truong nay phai co gia tri toi thieu la {{n}}",
+        "maxN": "Truong nay phai co gia tri toi da la {{n}}",
+        "pattern": "Truong nay khong hop le",
+        "unknown": "Loi khong xac dinh"
+    }
+}

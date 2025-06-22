@@ -1,0 +1,6 @@
+<p>language</p>
+<select name="lang" id="lang" [(ngModel)]="selectedLang" (change)="switchLangage(selectedLang)">
+    @for(l of langs; track l){
+        <option value="{{l.toString()}}">{{l}}</option>
+    }
+</select>

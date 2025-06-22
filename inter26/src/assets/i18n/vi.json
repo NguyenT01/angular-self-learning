@@ -1,0 +1,11 @@
+{
+    "home": "Chào mừng đến với Ponyracer",
+    "welcome-message": "Hãy tận hưởng những cuộc đua!",
+    "title": "Tiêu đề 1",
+    "title2": "Tiêu đề 2",
+    "morning": "Chào buổi sáng, {{name}}",
+    "dashboard": {
+        "title": "Tiêu đề Bảng điều khiển",
+        "desc": "Mô tả Bảng điều khiển"
+    }
+}

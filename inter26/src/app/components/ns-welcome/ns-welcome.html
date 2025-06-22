@@ -1,0 +1,24 @@
+<h1 i18n="welcome title | the title of the home page@@home.fullTitle">Welcome to Ponyracer</h1>
+<p i18n="@@home.welcome">Welcome to PONYRACER {{user.firstname}} {{user.lastname}}</p>
+<img src="/pony.gif" 
+alt="running pony" 
+i18n-alt="@@home.ponyImage.alt"
+title="Pony are cool, aren't they?"
+i18n-title="@@home.ponyImage.title"
+/>
+<ng-container i18n="@@home.startMessage">
+    Let's start playing
+</ng-container>
+
+<hr>
+<select name="status" id="status">
+    @for(s of status; track s){
+    <option [value]="s">{{s}}</option>
+    }
+</select>
+<hr>
+<p>{{goodNight}}</p>
+<hr>
+<p i18n="@@home.racesPlanned">
+  Hello, {racesPlanned(), plural, =0 {no race is planned} =1 {only one race is planned} other {{{ racesPlanned() }} races are planned}}.
+</p>
