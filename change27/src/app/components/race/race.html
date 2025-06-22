@@ -1,0 +1,10 @@
+<h2>Race</h2>
+<p>{{check()}}</p>
+@for(pony of ponies(); track pony.id){
+    <div>
+        <app-pony [ponyModel]="pony"></app-pony>
+        <p>{{pony.color}}</p>
+    </div>
+}
+<p>{{randomcolor2}}</p>
+<button (click)="changeColor()">Change color</button>
