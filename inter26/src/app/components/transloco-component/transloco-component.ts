@@ -8,7 +8,7 @@ import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
   styleUrl: './transloco-component.scss',
 })
 export class TranslocoComponent {
-  private transloco = inject(TranslocoService);
+  private readonly transloco = inject(TranslocoService);
   private readonly username = 'Nguyen Van A';
 
   getTitle() {

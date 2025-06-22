@@ -29,6 +29,4 @@ export class Form1 {
     name: this.nameCtrl,
     age: this.ageCtrl,
   });
-
-  submit() {}
 }

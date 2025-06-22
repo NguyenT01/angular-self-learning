@@ -17,8 +17,8 @@ export interface Food {
   styleUrl: './dashboard.scss',
 })
 export class Dashboard {
-  private translateService = inject(TranslateService);
-  private transloco = inject(TranslocoService);
+  private readonly translateService = inject(TranslateService);
+  private readonly transloco = inject(TranslocoService);
 
   readonly total = signal(4);
 
@@ -50,14 +50,6 @@ export class Dashboard {
 
   constructor() {
     this.initLang();
-  }
-
-  ngOnInit() {
-    // this.message.set(
-    //   this.transloco.translate('dashboard.unread', {
-    //     count: this.total(),
-    //   })
-    // );
   }
 
   initLang() {
