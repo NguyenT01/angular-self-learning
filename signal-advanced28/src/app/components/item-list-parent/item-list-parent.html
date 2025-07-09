@@ -1,0 +1,4 @@
+<button (click)="forceResetPlusOne()">Reset +1</button>
+<button (click)="switchEnable()">{{enable() ? 'Disable' : 'Enable'}}</button>
+<hr>
+<app-item-list [items]="items" [enabled]="enable()"></app-item-list>

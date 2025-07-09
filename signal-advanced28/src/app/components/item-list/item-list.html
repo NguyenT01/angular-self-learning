@@ -1,0 +1,4 @@
+@for(item of items(); track item.id){
+  <button (click)="pickItem(item)" [class.active]="selectedItem().id === item.id">{{item.name}}</button>
+}
+<p>Current: {{selectedItem().name}}</p>
