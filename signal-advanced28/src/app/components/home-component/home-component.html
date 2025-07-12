@@ -1,0 +1,26 @@
+<p>home-component works!</p>
+<button (click)="toggle()">Toggle</button>
+
+<hr>
+@defer(when isVisible()){
+  <app-chart-component></app-chart-component>
+}
+@placeholder(minimum 1500ms) {
+  <div>Somthing until the loading starts</div>
+}
+@loading(after 500ms; minimum 1500ms){
+  <div>Loading...</div>
+}
+@error {
+  <div>Something went wrong</div>
+}
+
+
+<hr>
+<button #trigger>click togger</button>
+@defer (on hover, timer(3s) ; prefetch on idle) {
+  <app-chart-component></app-chart-component>
+}
+@placeholder {
+  <button>Load data</button>
+}

@@ -1,0 +1,4 @@
+@for(pageNumber of pages(); track pageNumber){
+  <button [class.active]="page() === pageNumber"
+  (click)="goToPage(pageNumber)">{{pageNumber}}</button>
+}

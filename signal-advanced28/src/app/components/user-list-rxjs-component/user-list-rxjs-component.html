@@ -1,0 +1,18 @@
+<p>user-list-rxjs-component works!</p>
+@if(userResource.isLoading()){
+  <p>Loading ...</p>
+}
+@else{
+  <ul>
+    @for(user of userResource.value(); track user.id){
+      <li>{{ user.username }}</li>
+    }
+  </ul>
+}
+
+<hr>
+<input type="text" name="search" id="" [(ngModel)]="searchKey" placeholder="Search by name">
+
+<button (click)="setNewUser()">Update User</button>
+<button (click)="clearUsers()">Clear</button>
+<button (click)="stopCallingApi()">Destroy calling api</button>
