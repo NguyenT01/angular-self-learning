@@ -24,7 +24,7 @@ export class ValueEq {
   );
 
   readonly errorDisplay = computed(
-    () => this.status().dirty || this.status().touched
+    () => this.status().dirty ?? this.status().touched
   );
 
   toggleStatus() {
