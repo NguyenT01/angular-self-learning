@@ -1,0 +1,20 @@
+<p>User http</p>
+@if(usersResouce.isLoading()){
+  <p>Loading ...</p>
+}
+@else if(usersResouce.error()){
+  <p>Error: {{ usersResouce.error()?.message}}</p>
+}
+@else {
+  <ul>
+    @for(user of usersResouce.value(); track user.id){
+      <li>
+        {{user.username}}
+      </li>
+    }
+  </ul>
+}
+
+<hr>
+<input type="text" [(ngModel)]="searchKey" placeholder="Search by username">
+
