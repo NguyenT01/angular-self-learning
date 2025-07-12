@@ -6,6 +6,7 @@ import { ItemListParent } from './components/item-list-parent/item-list-parent';
 import { UserListComponent } from './components/user-list-component/user-list-component';
 import { UserListRxjsComponent } from './components/user-list-rxjs-component/user-list-rxjs-component';
 import { UserListHttp } from './components/user-list-http/user-list-http';
+import { HomeComponent } from './components/home-component/home-component';
 
 export const routes: Routes = [
   {
@@ -35,5 +36,9 @@ export const routes: Routes = [
   {
     path: 'user-http',
     component: UserListHttp,
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
   },
 ];
