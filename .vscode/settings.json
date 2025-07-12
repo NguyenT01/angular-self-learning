@@ -1,6 +1,0 @@
-{
-    "sonarlint.connectedMode.project": {
-        "connectionId": "http://sonar.tsn.local",
-        "projectKey": "angular-chapter8"
-    }
-}
