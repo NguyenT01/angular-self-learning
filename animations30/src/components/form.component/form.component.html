@@ -1,0 +1,9 @@
+<p>Invalid Form: {{invalidForm()}}</p>
+<p>Invalid Submission: {{invalidSubmission()}}</p>
+<div>
+  <button (click)="changeFormValidity()">Change form validity</button>
+</div>
+<div class="mt-2">
+  <button [class.shaking]="invalidSubmission()"
+    (animationend)="invalidSubmission.set(false)">Save</button>
+</div>

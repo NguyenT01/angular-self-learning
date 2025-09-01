@@ -1,0 +1,18 @@
+<p>Display: {{display()}}</p>
+<button (click)="toggle()">Toggle content</button>
+@if(display()){
+  <!-- Call animate.enter / leave directly via CSS class name-->
+  <div id="content" animate.enter="fade-in" animate.leave="fade-out">
+    Content
+  </div>
+
+  <!-- Call animate.leave/ animate.enter via signal-->
+  <div [animate.enter]="enterClassSignal()" [animate.leave]="leaveClassSignal()">
+    Content Signal
+  </div>
+
+  <!-- Call Javascript animation (for example: GSAP)-->
+   <div id="with-function" class="flex-grow-0" (animate.leave)="rotate($event)">
+    Content with JS function GSAP
+   </div>
+}
