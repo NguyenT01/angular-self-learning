@@ -58,4 +58,11 @@ export class LoginComponent {
 
     console.log(this.loginForm().errors());
   }
+
+  resetForm(){
+    this.credentials.set({
+      login: '',
+      password: '',
+    });
+  }
 }
