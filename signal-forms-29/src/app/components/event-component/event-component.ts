@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { applyEach, Field, form } from '@angular/forms/signals';
-import { requiredAndMinLengthSchema, requiredSchema } from '../register-component/validators';
+import { requiredAndMinLengthSchema } from '../register-component/validators';
 
 interface EventData{
   location: string;

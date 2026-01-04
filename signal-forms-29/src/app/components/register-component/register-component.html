@@ -19,6 +19,9 @@
                     }
                 </div>
              }
+             @if(emailField.pending()){
+                <p>Đang lấy dữ liệu...</p>
+             }
         </div>
         <div>
             <label for="password">Password</label>
@@ -49,6 +52,6 @@
                 }
             </div>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" [disabled]="accountForm().pending()">Submit</button>
     </form>
 </div>

@@ -9,10 +9,10 @@ export class UserService {
   authenticate(credentials: { login: string; password: string }) {
     return new Promise<TResponse<string>>((resolve, reject) => {
       setTimeout(() => {
-        if (credentials.login === 'admin') {
-          resolve(this.suceessResponse);
-        } else {
+        if (credentials.login.includes('admin')) {
           reject(this.errorResponse);
+        } else {
+          resolve(this.suceessResponse);
         }
       }, 2000);
     });
@@ -21,10 +21,10 @@ export class UserService {
   authenticateObservable(credentials: { login: string; password: string }) {
     return new Observable<TResponse<string>>((observer) => {
       setTimeout(() => {
-        if (credentials.login === 'admin') {
-          observer.next(this.suceessResponse);
-        } else {
+        if (credentials.login.includes('admin')) {
           observer.error(this.errorResponse);
+        } else {
+          observer.next(this.suceessResponse);
         }
         observer.complete();
       }, 2000);
