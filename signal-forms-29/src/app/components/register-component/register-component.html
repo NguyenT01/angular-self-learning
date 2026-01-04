@@ -38,6 +38,50 @@
                 </div>
             }
         </div>
+        
+        <div>
+            <label for="hasNickName">Has nickname</label>
+            <input type="checkbox" id="hasNickName" [ngModel]="hasNickName()" (ngModelChange)="hasNickName.set($event)" [ngModelOptions]="{standalone: true}">
+        </div>
+
+        @if(!accountForm.nickname().hidden()){
+            <div>
+                <label for="nickname">Nickname</label>
+                <input type="text" id="nickname" placeholder="Enter nickname" [field]="accountForm.nickname">
+
+                @let nicknameField = accountForm.nickname();
+                @if(nicknameField.touched() && !nicknameField.valid()){
+                    <div class="error">
+                        <ul>
+                            @for(error of nicknameField.errors() ; track error.kind){
+                                <li>{{ error.message }}</li>
+                        }
+                    </ul>
+                </div>
+            }
+            </div>
+        }
+
+        <div>
+            <label for="age">Age</label>
+            <input type="number" id="age" placeholder="Enter age" [field]="accountForm.age">
+        </div>
+
+        <div>
+            <label for="year">Year</label>
+            <input type="number" id="year" placeholder="Enter year" [field]="accountForm.year">
+
+            @let yearField = accountForm.year();
+                @if(yearField.touched() && !yearField.valid()){
+                    <div class="error">
+                        <ul>
+                            @for(error of yearField.errors() ; track error.kind){
+                                <li>{{ error.message }}</li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
 
         <hr>
         <div>

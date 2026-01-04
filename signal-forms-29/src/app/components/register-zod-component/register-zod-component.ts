@@ -14,7 +14,10 @@ export class RegisterZodComponent implements OnInit {
 
   private readonly account = signal<Account>({
     email: '',
-    password: ''
+    password: '',
+    nickname: '' ,
+    age: 10,
+    year: 2000
   });
 
   protected readonly accountForm = form(this.account, (form) => {

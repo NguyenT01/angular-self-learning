@@ -1,17 +1,21 @@
 import { Component, inject, resource, signal } from '@angular/core';
-import { apply, applyEach, debounce, Field, form, REQUIRED, submit, validate, validateAsync, validateHttp, validateTree } from '@angular/forms/signals';
+import { apply, applyEach, applyWhen, applyWhenValue, debounce, disabled, Field, form, hidden, min, readonly, REQUIRED, submit, validate, validateAsync, validateHttp, validateTree } from '@angular/forms/signals';
 import { emailSchema, requiredAndMinLengthSchema, requiredSchema } from './validators';
 import { UserService2 } from '../../services/user-service2';
 import { UserService } from '../../services/user-service';
+import { FormsModule } from '@angular/forms';
 
 export interface Account{
   email: string;
   password: string;
+  nickname: string;
+  age: number;
+  year: number;
 }
 
 @Component({
   selector: 'app-register-component',
-  imports: [Field],
+  imports: [Field, FormsModule],
   templateUrl: './register-component.html',
   styleUrl: './register-component.css',
 })
@@ -20,8 +24,13 @@ export class RegisterComponent {
 
   private readonly account = signal<Account>({
     email: '',
-    password: ''
+    password: '',
+    nickname: '',
+    age: 10,
+    year: 2000
   });
+
+  readonly hasNickName = signal<boolean>(false);
 
   private readonly userService2 = inject(UserService2);
   private readonly userService = inject(UserService);
@@ -34,7 +43,6 @@ export class RegisterComponent {
     apply(form.password, requiredAndMinLengthSchema);
 
     // Apply required to all fields
-    applyEach(form, requiredSchema);
 
     validate(form.password, (context) => {
         const password = context.value(); // Giá trị hiện tại của password
@@ -86,6 +94,32 @@ export class RegisterComponent {
             message: 'Không thể kiểm tra email, vui lòng thử lại'
           })
       });
+
+      // DYNAMIC
+      hidden(form.nickname, () => !this.hasNickName());
+      disabled(form.password, ({stateOf}) => {
+        return !stateOf(form.email).valid() ? 'Please enter a valid email' : false;
+      });
+
+      readonly(form.age, (context) => {
+        return !context.stateOf(form.email).valid();
+      });
+
+      applyWhenValue(form,
+        () => this.hasNickName(),
+        (form) => {
+          apply(form.nickname, requiredSchema)
+        }
+      );
+
+      applyWhen(form,
+        (context) => {
+          return context.valueOf(form.nickname).includes('admin')
+        },
+        (form) => {
+          min(form.year, 2025, {message: 'Year must be greater than 2025'})
+        }
+      )
   })
 
   isTooWeak(password: string): boolean {
@@ -97,6 +131,7 @@ export class RegisterComponent {
 
     await submit(this.accountForm, async (form) =>{
       console.log('submit')
+      console.log(form().value())
       const {email, password} = form().value();
 
       try{
