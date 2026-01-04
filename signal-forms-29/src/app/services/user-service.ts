@@ -10,7 +10,7 @@ export class UserService {
     return new Promise<TResponse<string>>((resolve, reject) => {
       setTimeout(() => {
         if (credentials.login.includes('admin')) {
-          reject(this.errorResponse);
+          reject(new Error(this.errorResponse.errorMessage));
         } else {
           resolve(this.suceessResponse);
         }

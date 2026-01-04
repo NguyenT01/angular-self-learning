@@ -4,6 +4,7 @@ import { RegisterComponent } from './components/register-component/register-comp
 import { RegisterZodComponent } from './components/register-zod-component/register-zod-component';
 import { EventComponent } from './components/event-component/event-component';
 import { MovieReviewComponent } from './components/movie-review-component/movie-review-component';
+import { UserCompoennt } from './components/user-compoennt/user-compoennt';
 
 export const routes: Routes = [
   {
@@ -25,5 +26,9 @@ export const routes: Routes = [
   {
     path: 'movie-review',
     component: MovieReviewComponent,
+  },
+  {
+    path: 'user',
+    component: UserCompoennt,
   }
 ];

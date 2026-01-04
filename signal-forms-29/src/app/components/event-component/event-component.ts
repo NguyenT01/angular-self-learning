@@ -19,8 +19,8 @@ export class EventComponent {
     participants: []
   });
 
-  protected readonly eventForm = form(this.event, (form) => {
-    applyEach(form.participants, requiredAndMinLengthSchema);
+  protected readonly eventForm = form(this.event, (f) => {
+    applyEach(f.participants, requiredAndMinLengthSchema);
   })
 
   addParticipant(){

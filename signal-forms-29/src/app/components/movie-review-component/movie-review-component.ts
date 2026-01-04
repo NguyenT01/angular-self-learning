@@ -16,14 +16,14 @@ export class MovieReviewComponent {
   
   protected readonly movieForm = form(
     this.movie,
-    (form) => {
-      required(form.title, {message: 'Title is required'})
+    (f) => {
+      required(f.title, {message: 'Title is required'})
     }
   )
 
   protected async submit(){
-    await submit(this.movieForm, async (form) => {
-      console.log(form().value())
+    await submit(this.movieForm, async (f) => {
+      console.log(f().value())
     })
 
   }

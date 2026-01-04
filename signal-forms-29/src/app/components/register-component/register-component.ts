@@ -1,5 +1,5 @@
 import { Component, inject, resource, signal } from '@angular/core';
-import { apply, applyEach, applyWhen, applyWhenValue, debounce, disabled, Field, form, hidden, min, readonly, REQUIRED, submit, validate, validateAsync, validateTree } from '@angular/forms/signals';
+import { apply, applyWhen, applyWhenValue, debounce, disabled, Field, form, hidden, min, readonly, REQUIRED, submit, validate, validateAsync, validateTree } from '@angular/forms/signals';
 import { emailSchema, requiredAndMinLengthSchema, requiredSchema } from './validators';
 import { UserService2 } from '../../services/user-service2';
 import { UserService } from '../../services/user-service';
@@ -35,30 +35,30 @@ export class RegisterComponent {
   private readonly userService2 = inject(UserService2);
   private readonly userService = inject(UserService);
 
-  protected readonly accountForm = form(this.account, (form) => {
+  protected readonly accountForm = form(this.account, (formX) => {
     // Email
-    apply(form.email, emailSchema)
+    apply(formX.email, emailSchema)
 
     // Password
-    apply(form.password, requiredAndMinLengthSchema);
+    apply(formX.password, requiredAndMinLengthSchema);
 
     // Apply required to all fields
 
-    validate(form.password, (context) => {
+    validate(formX.password, (context) => {
         const password = context.value(); // Giá trị hiện tại của password
         return this.isTooWeak(password)
           ? { kind: 'too-weak', message: 'Mật khẩu quá yếu! Cần ít nhất 8 ký tự, có chữ hoa và số.' }
           : undefined;
       });
 
-      validate(form, (context) => {
+      validate(formX, (context) => {
         const {email, password} = context.value();
         return email && password && email === password
           ? { kind: 'same-as-email', message: 'Mật khẩu không được giống email'}
           : undefined;
       })
 
-      validateTree(form, (context) => {
+      validateTree(formX, (context) => {
         const {email, password} = context.value();
         return email && password && email === password
           ? {
@@ -69,16 +69,16 @@ export class RegisterComponent {
           : undefined;
       })
 
-      validate(form.password, (context) => {
-        const email = context.valueOf(form.email);
+      validate(formX.password, (context) => {
+        const email = context.valueOf(formX.email);
         const password = context.value();
         return email && password && email === password
           ? { kind: 'same-as-email', message: 'Mật khẩu của bạn không được giống email'}
           : undefined;
       });
 
-      debounce(form.email, 1000);
-      validateAsync(form.email, {
+      debounce(formX.email, 1000);
+      validateAsync(formX.email, {
         params: (emailContext) => emailContext.value(),
         factory: (paramsSignal) =>
           resource({
@@ -96,28 +96,28 @@ export class RegisterComponent {
       });
 
       // DYNAMIC
-      hidden(form.nickname, () => !this.hasNickName());
-      disabled(form.password, ({stateOf}) => {
-        return !stateOf(form.email).valid() ? 'Please enter a valid email' : false;
+      hidden(formX.nickname, () => !this.hasNickName());
+      disabled(formX.password, ({stateOf}) => {
+        return stateOf(formX.email).valid() ?  false : 'Please enter a valid email';
       });
 
-      readonly(form.age, (context) => {
-        return !context.stateOf(form.email).valid();
+      readonly(formX.age, (context) => {
+        return !context.stateOf(formX.email).valid();
       });
 
-      applyWhenValue(form,
+      applyWhenValue(formX,
         () => this.hasNickName(),
-        (form) => {
-          apply(form.nickname, requiredSchema)
+        (f) => {
+          apply(f.nickname, requiredSchema)
         }
       );
 
-      applyWhen(form,
+      applyWhen(formX,
         (context) => {
-          return context.valueOf(form.nickname).includes('admin')
+          return context.valueOf(formX.nickname).includes('admin')
         },
-        (form) => {
-          min(form.year, 2025, {message: 'Year must be greater than 2025'})
+        (f) => {
+          min(f.year, 2025, {message: 'Year must be greater than 2025'})
         }
       )
   })
@@ -129,16 +129,16 @@ export class RegisterComponent {
   protected async submit(event: Event){
     event.preventDefault();
 
-    await submit(this.accountForm, async (form) =>{
+    await submit(this.accountForm, async (f) =>{
       console.log('submit')
-      console.log(form().value())
-      const {email, password} = form().value();
+      console.log(f().value())
+      const {email, password} = f().value();
 
       try{
         await this.userService.authenticate({login: email, password});
-        return;
+        return null;
       }
-      catch(error){
+      catch {
         return [
         // PARENT VALIDATION
           {
@@ -147,7 +147,7 @@ export class RegisterComponent {
         },
         // FIELD VALIDATION (ONLY EMAIL)
         {
-          field: form.email,
+          field: f.email,
           kind: 'invalid-credentials',
           message: 'Tên đăng nhập hoặc mật khẩu không chính xác'
         }]

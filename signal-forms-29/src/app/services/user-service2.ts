@@ -9,7 +9,7 @@ export class UserService2 {
             setTimeout(() => {
                 console.log('called api')
                 if(email.includes('2001')){
-                    reject('Internal Server Error');
+                    reject(new Error('Internal Server Error'));
                 }
                 else if(email.includes('2000')){
                     resolve(true);

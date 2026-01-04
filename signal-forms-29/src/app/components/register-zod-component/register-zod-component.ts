@@ -20,8 +20,8 @@ export class RegisterZodComponent implements OnInit {
     year: 2000
   });
 
-  protected readonly accountForm = form(this.account, (form) => {
-    validateStandardSchema(form, 
+  protected readonly accountForm = form(this.account, (f) => {
+    validateStandardSchema(f, 
       z.object({
         email: z.string().check(z.email({error: 'Email không hợp lệ'})),
         password: z.string().check(z.minLength(6, {

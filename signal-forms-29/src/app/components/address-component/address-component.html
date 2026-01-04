@@ -1,0 +1,28 @@
+<p>Address</p>
+@let address = addressField();
+
+<div class="address">
+    <div>
+        <label for="number">Số nhà</label>
+        <input [field]="address.number">
+        @let number = address.number();
+        @if(number.touched() && number.invalid()){
+            <small>Số nhà là bắt buộc</small>
+        }
+    </div>
+
+    <div>
+        <label for="street">Địa chỉ</label>
+        <input [field]="address.street">
+    </div>
+
+    <div>
+        <label for="zipcode">Mã bưu điện</label>
+        <input [field]="address.zipcode">
+    </div>
+
+    <div>
+        <label for="city">Thành phố</label>
+        <input [field]="address.city">
+    </div>
+</div>

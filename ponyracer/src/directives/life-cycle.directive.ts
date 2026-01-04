@@ -39,10 +39,10 @@ export class OnChangesDirective implements OnChanges {
 export class OnDestroyDirective implements OnDestroy {
   sayHello: number;
   constructor() {
-    this.sayHello = window.setInterval(() => console.log('Hello'), 1000);
+    this.sayHello = globalThis.setInterval(() => console.log('Hello'), 1000);
   }
 
   ngOnDestroy() {
-    window.clearInterval(this.sayHello);
+    globalThis.clearInterval(this.sayHello);
   }
 }

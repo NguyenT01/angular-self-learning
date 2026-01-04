@@ -23,13 +23,13 @@ export class LoginComponent {
 
   protected async authenticate(event: SubmitEvent) {
     event.preventDefault();
-    await submit(this.loginForm, async (form) => {
-      const { login, password } = form().value();
+    await submit(this.loginForm, async (f) => {
+      const { login, password } = f().value();
 
       try {
         const result = await this.userService.authenticate({ login, password });
         this.results.set(result.data);
-        return;
+        return [];
       } catch (error) {
         const message = error instanceof Error ? error.message : 'Unknown error';
         return [{ kind: 'invalid-credentials', message }];
@@ -41,15 +41,15 @@ export class LoginComponent {
 
   protected async authenticateObservable(event: SubmitEvent) {
     event.preventDefault();
-    await submit(this.loginForm, async (form) => {
-      const { login, password } = form().value();
+    await submit(this.loginForm, async (f) => {
+      const { login, password } = f().value();
 
       try {
         const result = await firstValueFrom(
           this.userService.authenticateObservable({ login, password })
         );
         this.results.set(result.data);
-        return;
+        return [];
       } catch (error) {
         const message = error instanceof Error ? error.message : 'Unknown error';
         return [{ kind: 'invalid-credentials', message }];
