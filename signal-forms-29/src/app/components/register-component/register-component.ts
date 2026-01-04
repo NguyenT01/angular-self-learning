@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
-import { email, Field, form, minLength, required, REQUIRED, validate, validateTree } from '@angular/forms/signals';
+import { apply, applyEach, email, Field, form, minLength, required, REQUIRED, validate, validateTree } from '@angular/forms/signals';
+import { emailSchema, requiredAndMinLengthSchema, requiredSchema } from './validators';
 
 export interface Account{
   email: string;
@@ -22,14 +23,13 @@ export class RegisterComponent {
 
   protected readonly accountForm = form(this.account, (form) => {
     // Email
-    required(form.email, {message: 'Email là bắt buộc'});
-    email(form.email, {message: 'Email không hợp lệ'});
+    apply(form.email, emailSchema)
 
     // Password
-    required(form.password, {message: 'Mật khẩu là bắt buộc'});
-    minLength(form.password, 6, {
-      message: (field) => `Mật khẩu phải có ít nhất 6 ký tự, hiện tại chỉ có ${field.value().length} ký tự`
-    });
+    apply(form.password, requiredAndMinLengthSchema);
+
+    // Apply required to all fields
+    applyEach(form, requiredSchema);
 
     validate(form.password, (context) => {
         const password = context.value(); // Giá trị hiện tại của password

@@ -1,0 +1,21 @@
+<p>Event</p>
+@for (participant of eventForm.participants; track $index){
+    <div class="paticipant">
+        <label [for]="'participant-' + $index">Username {{ $index + 1 }}</label>
+        <input type="text" [id]="'participant-' + $index" [field]="participant">
+
+        @let p = participant();
+        @if(p.touched() && !p.valid()){
+            <div class="error">
+                <ul>
+                    @for(error of p.errors(); track error.kind){
+                        <li>{{ error.message }}</li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+}
+<div>
+    <button (click)="addParticipant()">Add More</button>
+</div>
