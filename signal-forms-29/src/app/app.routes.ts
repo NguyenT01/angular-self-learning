@@ -3,6 +3,7 @@ import { LoginComponent } from './components/login-component/login-component';
 import { RegisterComponent } from './components/register-component/register-component';
 import { RegisterZodComponent } from './components/register-zod-component/register-zod-component';
 import { EventComponent } from './components/event-component/event-component';
+import { MovieReviewComponent } from './components/movie-review-component/movie-review-component';
 
 export const routes: Routes = [
   {
@@ -20,5 +21,9 @@ export const routes: Routes = [
   {
     path: 'event',
     component: EventComponent,
+  },
+  {
+    path: 'movie-review',
+    component: MovieReviewComponent,
   }
 ];

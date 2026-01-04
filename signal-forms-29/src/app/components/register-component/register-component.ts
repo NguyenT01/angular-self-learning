@@ -1,5 +1,5 @@
 import { Component, inject, resource, signal } from '@angular/core';
-import { apply, applyEach, applyWhen, applyWhenValue, debounce, disabled, Field, form, hidden, min, readonly, REQUIRED, submit, validate, validateAsync, validateHttp, validateTree } from '@angular/forms/signals';
+import { apply, applyEach, applyWhen, applyWhenValue, debounce, disabled, Field, form, hidden, min, readonly, REQUIRED, submit, validate, validateAsync, validateTree } from '@angular/forms/signals';
 import { emailSchema, requiredAndMinLengthSchema, requiredSchema } from './validators';
 import { UserService2 } from '../../services/user-service2';
 import { UserService } from '../../services/user-service';
@@ -26,7 +26,7 @@ export class RegisterComponent {
     email: '',
     password: '',
     nickname: '',
-    age: 10,
+    age: 0,
     year: 2000
   });
 
