@@ -1,28 +1,7 @@
 <p>Register</p>
 <div>
     <form (submit)="submit($event)">
-        <div>
-            <label for="email">Email
-                @let isRequired = accountForm.email().metadata(REQUIRED);
-                @if(isRequired()){
-                    <span style="color: red;">*</span>
-                }
-            </label>
-            <input id="email" placeholder="Enter email" [field]="accountForm.email">
 
-            <!-- Hiển thị lỗi khi đã touched và không valid -->
-             @let emailField = accountForm.email();
-             @if(emailField.touched() && !emailField.valid()){
-                <div class="error">
-                    @for(error of emailField.errors(); track error.kind){
-                        <small>{{ error.message }}</small>
-                    }
-                </div>
-             }
-             @if(emailField.pending()){
-                <p>Đang lấy dữ liệu...</p>
-             }
-        </div>
         <div>
             <label for="password">Password</label>
             <input type="password" id="password" placeholder="Enter password" [field]="accountForm.password">
@@ -37,6 +16,28 @@
                     </ul>
                 </div>
             }
+        </div>
+
+        <div>
+            <label for="email">Email
+                @let isRequired = accountForm.email().metadata(REQUIRED);
+                @if(isRequired()){
+                    <span style="color: red;">*</span>
+                }
+            </label>
+            <input id="email" placeholder="Enter email" [field]="accountForm.email">
+
+            @let emailField = accountForm.email();
+            @if(emailField.touched() && !emailField.valid()){
+                <div class="error">
+                    @for(error of emailField.errors(); track error.kind){
+                        <small>{{ error.message }}</small>
+                    }
+                </div>
+             }
+             @if(emailField.pending()){
+                <p>Đang lấy dữ liệu...</p>
+             }
         </div>
         
         <div>
