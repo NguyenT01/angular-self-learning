@@ -1,0 +1,17 @@
+<p>Welcome to login</p>
+
+<form (submit)="authenticate($event)">
+  <label for="login">Login</label>
+  <input type="text" id="login" [field]="loginForm.login">
+  <label for="password">Password</label>
+  <input type="password" id="password" [field]="loginForm.password">
+  <div>
+  <button type="submit">Login</button>
+<button type="submit">Login Observable</button>
+  </div>
+  <div>
+    <button type="button" (click)="resetForm()">Reset</button>
+  </div>
+</form>
+
+<p>Results: {{ results() }}</p>

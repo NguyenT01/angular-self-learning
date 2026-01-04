@@ -29,11 +29,11 @@ export class RacesComponent {
   ponies =  new Map<number, PonyModel>();
 
   asyncGretting = new Promise<string>(resolve =>{
-    window.setTimeout(() => resolve('Hello'), 3000)
+    globalThis.setTimeout(() => resolve('Hello'), 3000)
   })
 
   asyncUser = new Promise<UserModel>(resolve =>{
-    window.setTimeout(() => resolve({name: 'Cédric'}), 3000)
+    globalThis.setTimeout(() => resolve({name: 'Cédric'}), 3000)
   })
 
   // 30th January 2025, 14:30:00
