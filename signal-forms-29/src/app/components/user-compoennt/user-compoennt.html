@@ -1,0 +1,9 @@
+<form (submit)="submit($event)">
+    <input type="text" [field]="userForm.firstname" placeholder="First name">
+    <input type="text" [field]="userForm.lastname" placeholder="Last name">
+
+    <!--Sub form-->
+    <app-address-component [addressField]="userForm.address"></app-address-component>
+
+    <button type="submit">Submit</button>
+</form>

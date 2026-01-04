@@ -1,0 +1,31 @@
+<p>Register</p>
+<div>
+    <form (submit)="submit($event)">
+        <div>
+            <input id="email" placeholder="Enter email" [field]="accountForm.email">
+            <!-- Hiển thị lỗi khi đã touched và không valid -->
+             @let emailField = accountForm.email();
+             @if(emailField.touched() && !emailField.valid()){
+                <div class="error">
+                    @for(error of emailField.errors(); track error.kind){
+                        <p>{{ error.message }}</p>
+                    }
+                </div>
+             }
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" [field]="accountForm.password">
+
+            @let passwordField = accountForm.password();
+            @if(passwordField.touched() && !passwordField.valid()){
+                <div class="error">
+                    @for(error of passwordField.errors() ; track error.kind){
+                        <p>{{ error.message }}</p>
+                    }
+                </div>
+            }
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>

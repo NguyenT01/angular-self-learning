@@ -1,0 +1,13 @@
+@let currentValue = value();
+
+<div class="rating">
+    @for(star of pickableValues; track star){
+        <button 
+            type="button"
+            [class.selected]="currentValue !== null && star <= currentValue"
+            (click)="value.set(star)"
+            [disabled]="disabled()"
+            (blur)="touched.set(true)"
+        >{{ star }} ★</button>
+    }
+</div>
