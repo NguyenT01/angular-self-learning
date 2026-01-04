@@ -27,11 +27,27 @@
             @let passwordField = accountForm.password();
             @if(passwordField.touched() && !passwordField.valid()){
                 <div class="error">
-                    @for(error of passwordField.errors() ; track error.kind){
-                        <small>{{ error.message }}</small>
-                    }
+                    <ul>
+                        @for(error of passwordField.errors() ; track error.kind){
+                            <li>{{ error.message }}</li>
+                        }
+                    </ul>
                 </div>
             }
+        </div>
+
+        <hr>
+        <div>
+            <p>Parent form errors</p>
+            <div class="error">
+                @if(accountForm().touched() && !accountForm().valid()){
+                    <ul>
+                        @for(error of accountForm().errors(); track error.kind){
+                            <li>{{ error.message }}</li>
+                        }
+                    </ul>
+                }
+            </div>
         </div>
         <button type="submit">Submit</button>
     </form>
