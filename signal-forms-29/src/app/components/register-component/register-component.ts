@@ -85,7 +85,7 @@ export class RegisterComponent {
             params: paramsSignal,
             loader: async(loaderParams) => {
               console.log('called')
-              return await this.userService2.isEmailRegistered(loaderParams.params);
+              return this.userService2.isEmailRegistered(loaderParams.params);
             }
           }),
           onSuccess: (response: boolean) => response ? {kind: 'email-taken', message: 'Email đã được sử dụng'} : undefined,

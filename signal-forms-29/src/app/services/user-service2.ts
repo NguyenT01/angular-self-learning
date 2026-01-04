@@ -4,7 +4,7 @@ import { Injectable } from "@angular/core";
     providedIn: 'root'
 })
 export class UserService2 {
-    isEmailRegistered(email: string): Promise<boolean> {
+    public async isEmailRegistered(email: string): Promise<boolean> {
         return new Promise<boolean>((resolve, reject) => {
             setTimeout(() => {
                 console.log('called api')
